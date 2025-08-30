@@ -1,0 +1,24 @@
+name: debian-linux-reference-build
+run-name: Reference test of application for Debian Latest
+on: [push, pull_request]
+jobs:
+  build-debug:
+    runs-on: debian-latest
+    container:
+      image: stkth/am64xx-reset-cause:${{matrix.distro}}
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: build
+        run: cmake -DCMAKE_BUILD_TYPE=Debug
+      - name: Check binary
+        run: file src/am64xx-reset-cause
+  build-release:
+    runs-on: debian-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: build
+        run: cmake -DCMAKE_BUILD_TYPE=Release
+      - name: Check binary
+        run: file src/am64xx-reset-cause
