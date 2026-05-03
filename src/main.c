@@ -53,9 +53,10 @@ int main(int argc, char *argv[]) {
     exit(EXIT_SUCCESS);
   }
 
-  if (GetAM64ResetRegister(&am64xx_rst_register))
+  if (GetAM64ResetRegister(&am64xx_rst_register)) {
     fprintf(stderr, "Reading AM64XX reset register failed!\n");
-  exit(EXIT_FAILURE);
+    exit(EXIT_FAILURE);
+  }
 
   if (pretty)
     PrettyPrintAM64ResetCause(&am64xx_rst_register);
