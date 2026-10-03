@@ -17,6 +17,17 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
+/* Determine page for given register */
+#define OFFSET_PAGE_FOR_REGISTER(r) (r & ~(getpagesize() - 1))
+
+/* Determine address for register in page */
+#define ADDR_OF_REGISTER_IN_PAGE(p, r) (p + (r & (getpagesize() - 1)))
+
+/* Reset control register */
+#define CTRLMMR_RST_SRC_PROXY_0 0x43018178
+#define CTRLMMR_RST_SRC_PROXY_1 0x4301A178
+
+
 int GetAM64ResetRegister(AM64XX_RESET_CAUSE *reg) {
   int fd;
   void *page;

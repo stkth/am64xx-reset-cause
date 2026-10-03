@@ -2,19 +2,8 @@
  * SPDX-License-Identifier: GPLv2
  * Copyright (c) 2025 Steffen Kothe <steffen.kothe@skothe.net>
  */
-
-// Determine page for given register
-#define OFFSET_PAGE_FOR_REGISTER(r) (r & ~(getpagesize() - 1))
-
-// Determine address for register in page
-#define ADDR_OF_REGISTER_IN_PAGE(p, r) (p + (r & (getpagesize() - 1)))
-
 #ifndef AM64XX_RESET_REG_H
 #define AM64XX_RESET_REG_H
-
-/* Reset control register */
-#define CTRLMMR_RST_SRC_PROXY_0 0x43018178
-#define CTRLMMR_RST_SRC_PROXY_1 0x4301A178
 
 /* Two proxy registers are available hence use proxy 0 */
 #define CTRLMMR_RST_SRC CTRLMMR_RST_SRC_PROXY_0
